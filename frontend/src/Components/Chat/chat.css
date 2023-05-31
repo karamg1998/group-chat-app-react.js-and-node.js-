@@ -1,0 +1,72 @@
+.c-form
+{
+position: fixed;
+bottom: 0;
+right: 0;
+width: 99%;
+background-color: black;
+text-align:center;
+padding: 8px;
+}
+#c-msg
+{
+    width: 40%;
+    padding: 3px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+}
+#c-snd-mssg{
+    padding: 4px;
+    background-color: royalblue;
+    border-radius: 5px;
+    border: none;
+    color:rgb(248, 245, 245);
+    font-size: 20px;
+    margin-left: 10px;
+}
+.c-header
+{
+    background-color: black;
+   color: white;
+   display: flex;
+   padding: 12px;
+}
+.h{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 45%;
+}
+#b
+{
+    border: none;
+    background-color: royalblue;
+    border-radius: 2px;
+    color: white;
+    font-weight: bold;
+    padding: 4px;
+}
+.log{
+    float: right;
+    display: block;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(5, 5, 5);
+    color: white;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-right: 10%;
+    
+}
+.sec
+{
+    float: left;
+    margin-left: 10%;
+    display: block;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(10, 10, 10);
+    color: white;
+    padding-left: 5%;
+    padding-right: 5%;
+}
