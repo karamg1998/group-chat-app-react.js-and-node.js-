@@ -1,0 +1,32 @@
+.header{
+    background-color: rebeccapurple;
+    padding: 8px;
+    display: flex;
+}
+.gh{
+    font-size: 25px;
+    font-weight: bolder;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+}
+.com
+{
+    font-size: 15px;
+    font-weight: bolder;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+}
+.popup{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+   }
+   .toast{
+    background-color: rgb(226, 29, 29);
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    padding: 2rem;
+    margin: 1rem;
+   }
+   

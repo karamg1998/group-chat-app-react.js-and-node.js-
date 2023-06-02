@@ -1,12 +1,10 @@
-const userController=require('../Controllers/user');
+const userController=require('../controller/user');
 const express=require('express');
 const router=express.Router();
 
 router.get('/getuser',userController.getUser);
 router.post('/adduser',userController.addUser);
-router.get('/getusers',userController.getUsers);
-router.get('/user',userController.user);
-router.get('/profile',userController.profile);
-
+router.post('/forgotpass',userController.forgotPass);
+router.post('/forgotpasssuccess',userController.forgotSuccess);
 
 module.exports=router;

@@ -1,0 +1,36 @@
+.forgot-form{
+    text-align: center;
+    background-color: royalblue;
+    border: none;
+    padding: 15px;
+    border-radius: 6px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+#forgot
+{
+    padding: 10px;
+    font-weight: 15px;
+}
+.popup{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+   }
+   .toast{
+    background-color: rgb(226, 29, 29);
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    padding: 2rem;
+    margin: 1rem;
+   }
+   #back{
+    border: none;
+    padding: 11px;
+    border-radius: 3px;
+    background-color: rgb(13, 63, 223);
+    color: white;
+    margin-right: 10px;
+   }
+   

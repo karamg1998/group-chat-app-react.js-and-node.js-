@@ -1,24 +1,39 @@
 const express=require('express');
 const sequelize=require('./database/db');
+const bodyParser=require('body-parser');
 const cors=require('cors');
-const app=express();
+
 const userRoutes=require('./routes/userRoutes');
-const chatRoutes=require('./routes/chatRoutes');
+const personalRoutes=require('./routes/personalRoutes');
+const recRoutes=require('./routes/recRoutes');
+const jobRoutes=require('./routes/jobRoutes');
+const appliedRoutes=require('./routes/appliedRoutes');
 
 const User=require('./models/user');
+const info=require('./models/personalinfo');
 const forgot=require('./models/forgotPass');
-const messages=require('./models/messages');
+const Jobs=require('./models/jobs');
+const rec=require('./models/recruiter');
+const applied=require('./models/applied');
 
+const app=express();
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
+
+
 app.use(userRoutes);
-app.use(chatRoutes);
+app.use(personalRoutes);
+app.use(recRoutes);
+app.use(jobRoutes);
+app.use(appliedRoutes);
 
-
+User.hasOne(info);
+User.hasOne(rec);
 User.hasMany(forgot);
-User.hasMany(messages);
-
+User.hasMany(Jobs);
+User.hasMany(applied);
+Jobs.hasMany(applied);
 
 sequelize.sync().then(res=>{
-    app.listen(4000);
+    app.listen(4000, '0.0.0.0');
 }).catch(err=>console.log(err));

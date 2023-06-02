@@ -1,0 +1,19 @@
+.details{
+    text-align: center;
+    border: 3px solid gray;
+    border-radius: 3px;
+    background-color: white;
+    padding: 10px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+#e,#b{
+    background-color:royalblue;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+    padding: 4px;
+    margin-right: 3px;
+}

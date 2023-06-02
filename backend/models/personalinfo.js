@@ -1,7 +1,7 @@
 const Sequelize=require('sequelize');
 const sequelize=require('../database/db');
 
-const User=sequelize.define('user',{
+const Personal=sequelize.define('personal',{
     id:{type:Sequelize.INTEGER,
         autoIncrement:true,
         primaryKey:true,
@@ -19,18 +19,14 @@ const User=sequelize.define('user',{
         unique:true,
         allowNull:false,
     },
-    password:{
-        type:Sequelize.STRING,
-        allowNull:false,
-    },
-    premiumUser:{
-        type:Sequelize.STRING,
-        allowNull:false,
-    },
-    recruiter:{
-        type:Sequelize.STRING,
-        allowNull:false,
-    }
+    College:Sequelize.STRING,
+    Graduation:Sequelize.STRING,
+    specialization:Sequelize.STRING,
+    Skill1:Sequelize.STRING,
+    Skill2:Sequelize.STRING,
+    Skill3:Sequelize.STRING,
+    Skill4:Sequelize.STRING,
+    Skill5:Sequelize.STRING
 });
 
-module.exports=User;
+module.exports=Personal;

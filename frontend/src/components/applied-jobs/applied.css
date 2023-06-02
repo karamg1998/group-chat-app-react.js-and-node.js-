@@ -1,0 +1,20 @@
+.applied-j{
+    border: 2px solid gray;
+    background-color: white;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    margin-left: 150px;
+    margin-right: 150px;
+    display:flex;
+    padding: 20px;
+    text-align: center;
+}
+.j,.l,.q,.e,.d{
+    text-decoration: none;
+    padding-right: 120px;
+    font-weight: bold;
+    font-size: 16px;
+    font-style: normal;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+

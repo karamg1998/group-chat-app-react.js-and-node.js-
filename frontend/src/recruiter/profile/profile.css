@@ -1,0 +1,33 @@
+.profile-form{
+    text-align: center;
+    border-radius: 10px;
+    border: 2px;
+    background-color: royalblue;
+    text-align: center;
+    padding: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.name,.email,.phone,{
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: inherit;
+    color: white;
+    padding-right: 20px;
+}
+.firm,.desig{
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    padding-right: 20px;
+}
+
+#edit{
+    background-color: rebeccapurple;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+}

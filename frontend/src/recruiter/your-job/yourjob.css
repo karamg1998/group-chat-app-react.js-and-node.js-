@@ -1,0 +1,51 @@
+.your-j{
+    border: 2px solid gray;
+    background-color: white;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    margin-left: 150px;
+    margin-right: 150px;
+    display:flex;
+    padding: 20px;
+    text-align: center;
+}
+.jobname,.loc,.quali,.exp{
+    text-decoration: none;
+    padding-right: 75px;
+    font-weight: bold;
+    font-size: 16px;
+    font-style: normal;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#del{
+    background-color: red;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+    padding: 4px;
+}
+#details{
+    background-color:royalblue;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+    padding: 4px;
+    margin-right: 3px;
+}
+.popup{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+   }
+   .toast{
+    background-color: rgb(6, 112, 11);
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    padding: 2rem;
+    margin: 1rem;
+   }

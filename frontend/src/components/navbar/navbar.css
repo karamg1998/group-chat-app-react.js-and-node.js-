@@ -1,0 +1,59 @@
+.all-button{
+    text-align: center;
+}
+#logout{
+    float: right;
+    margin-right: 10px;
+    padding: 6px;
+    background-color: rgb(228, 7, 7);
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+.profile{
+    float: right;
+    margin-right: 10px;
+    padding: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 16px;
+    font-weight: bolder;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.profile.active{
+    float: right;
+    margin-right: 10px;
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+    font-weight: bolder;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+}
+.job,.similar,.applied-b{
+    background-color: royalblue;
+    color: white;
+    padding: 6px;
+    border: none;
+    margin-left: 3px;
+    border-radius: 3px;
+    font-size: 15px;
+}
+.alljobs.active,.sim.active,.app.active{
+    background-color: royalblue;
+    color: white;
+    padding: 10px;
+    border: none;
+    margin-left: 3px;
+    border-radius: 3px;
+}
+

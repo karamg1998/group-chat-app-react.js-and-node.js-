@@ -1,0 +1,23 @@
+.applier{
+    text-align: center;
+}
+.can-con{
+    border: 2px solid gray;
+    background-color: white;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    margin-left: 200px;
+    margin-right: 200px;
+    display:flex;
+    padding: 20px;
+    text-align: center;
+    text-align: center;
+}
+.jobName,.Locat,.nam,.emai,.phon{
+    text-decoration: none;
+    padding-right: 40px;
+    font-weight: bold;
+    font-size: 16px;
+    font-style: normal;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

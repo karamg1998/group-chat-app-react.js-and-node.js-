@@ -1,0 +1,94 @@
+.job-post-form{
+    background-color: rebeccapurple;
+    text-align: center;
+    border: none;
+    border-radius: 6px;
+    margin-left: 200px;
+    margin-right: 200px;
+    padding: 30px;
+}
+#desc{
+    width: 300px;
+    height: 150px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.position{
+padding-right: 50px;
+border: none;
+border-radius: 3px;
+font-weight: bold;
+font-size: 20px;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+color: white;
+}
+.desc{
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    }
+#position,#location,#qualification,#experience{
+border: none;
+border-radius: 3px;
+font-weight: bold;
+width: 40%;
+font-size: 20px;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.location{
+    padding-right: 45px;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+
+}
+.qualification{
+    padding-right: 10px;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+
+}
+#post{
+    border: none;
+    border-radius: 3px;
+    background-color: royalblue;
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 15px;
+}
+.popup{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+   }
+   .toast{
+    background-color: rgb(6, 112, 11);
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    padding: 2rem;
+    margin: 1rem;
+   }
+   .experience{
+    padding-right: 25px;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+   }

@@ -1,7 +1,7 @@
 const Sequelize=require('sequelize');
 const sequelize=require('../database/db');
 
-const User=sequelize.define('user',{
+const Recruiter=sequelize.define('rec-personal',{
     id:{type:Sequelize.INTEGER,
         autoIncrement:true,
         primaryKey:true,
@@ -19,18 +19,8 @@ const User=sequelize.define('user',{
         unique:true,
         allowNull:false,
     },
-    password:{
-        type:Sequelize.STRING,
-        allowNull:false,
-    },
-    premiumUser:{
-        type:Sequelize.STRING,
-        allowNull:false,
-    },
-    recruiter:{
-        type:Sequelize.STRING,
-        allowNull:false,
-    }
+    Firm:Sequelize.STRING,
+    Designation:Sequelize.STRING,
 });
 
-module.exports=User;
+module.exports=Recruiter;
