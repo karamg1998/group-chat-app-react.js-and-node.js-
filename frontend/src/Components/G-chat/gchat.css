@@ -46,30 +46,35 @@ padding: 8px;
     font-weight: bold;
     padding: 4px;
 }
-.log{
-    float: right;
-    display: block;
+#allm
+{
+    margin-left: 40%;
     border: none;
-    border-radius: 10px;
-    background-color: rgb(5, 5, 5);
+    background-color: royalblue;
+    border-radius: 3px;
     color: white;
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-right: 10%;
-    
+    font-weight: bold;
+    padding: 4px;
 }
-.sec
+#am
+{
+    margin-left: 10px;
+    background-color: royalblue;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    padding: 4px;
+}
+.you
+{
+    float: right;
+    margin-right: 10%;
+    font-size: 12px;
+}
+.other
 {
     float: left;
     margin-left: 10%;
-    display: block;
-    border: none;
-    border-radius: 10px;
-    background-color: rgb(10, 10, 10);
-    color: white;
-    padding-left: 5%;
-    padding-right: 5%;
-}
-.c-form{
-    margin-top: 10%;
+    font-size: 12px;
 }

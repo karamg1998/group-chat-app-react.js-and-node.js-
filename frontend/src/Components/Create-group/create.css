@@ -1,0 +1,33 @@
+.g
+{
+   text-align: center;
+    margin-right: 32%;
+    margin-left: 32%;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 20px;
+}
+.en
+{
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 10px;
+}
+.group-n
+{
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: inherit;
+}
+#crg{
+    border: none;
+    background-color: royalblue;
+    border-radius: 3px;
+    color: white;
+    padding: 6px;
+    font-weight: bold;
+}

@@ -1,39 +1,77 @@
 const express=require('express');
 const sequelize=require('./database/db');
-const bodyParser=require('body-parser');
 const cors=require('cors');
+const http=require('http');
+const { Server } = require("socket.io");
+const app=express();
+const server = http.createServer(app);
+const jwt=require('jsonwebtoken');
+
+function parseToken(id) {
+  let j = jwt.verify(id, 'hffgjhfgjhfgj');
+  return j.Id;
+}
+
+app.use(cors());
+app.use(express.json());
+
+const io=new Server(server, {
+    cors: {
+      origin: "http://localhost:3000"
+    }
+  });
 
 const userRoutes=require('./routes/userRoutes');
-const personalRoutes=require('./routes/personalRoutes');
-const recRoutes=require('./routes/recRoutes');
-const jobRoutes=require('./routes/jobRoutes');
-const appliedRoutes=require('./routes/appliedRoutes');
+const chatRoutes=require('./routes/chatRoutes');
+const groupRoutes=require('./routes/groupRoutes');
 
 const User=require('./models/user');
-const info=require('./models/personalinfo');
 const forgot=require('./models/forgotPass');
-const Jobs=require('./models/jobs');
-const rec=require('./models/recruiter');
-const applied=require('./models/applied');
-
-const app=express();
-app.use(cors());
-app.use(bodyParser.json());
-
+const messages=require('./models/messages');
+const group=require('./models/group');
+const groupMessages=require('./models/group-messages');
+const groupMembers=require('./models/group-member');
 
 app.use(userRoutes);
-app.use(personalRoutes);
-app.use(recRoutes);
-app.use(jobRoutes);
-app.use(appliedRoutes);
+app.use(chatRoutes);
+app.use(groupRoutes);
 
-User.hasOne(info);
-User.hasOne(rec);
 User.hasMany(forgot);
-User.hasMany(Jobs);
-User.hasMany(applied);
-Jobs.hasMany(applied);
+User.hasMany(messages);
+User.hasMany(group);
+User.hasMany(groupMessages);
+User.hasMany(groupMembers);
+group.hasMany(groupMembers);
+group.hasMany(groupMessages);
 
-sequelize.sync().then(res=>{
-    app.listen(4000, '0.0.0.0');
-}).catch(err=>console.log(err));
+
+  io.on("connection", (socket) => {
+    console.log(`User Connected: ${socket.id}`);
+  
+    socket.on("join_room", (data) => {
+      socket.join(data);
+    });
+  
+    socket.on("send_message",async (data) => {
+        let logger = parseToken(data.pId);
+        let sUser = parseToken(data.id);
+       try{
+            await messages.create({
+              message: data.msg,
+              to: sUser,
+              userId: logger
+           }).then(message => {
+            socket.to(data.room).emit("receive_message", data.msg);
+           })
+          }
+           catch(err)
+           {
+            console.log(err);
+           }
+    });
+  });
+
+
+    sequelize.sync().then(res=>{
+      server.listen(4000);
+  }).catch(err=>console.log(err));

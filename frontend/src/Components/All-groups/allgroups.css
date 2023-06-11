@@ -1,0 +1,42 @@
+.cr-gr
+{
+    text-align: center;
+    margin-right: 150px;
+}
+#cr
+{
+    border: none;
+    background-color: royalblue;
+    border-radius: 3px;
+    color: white;
+    padding: 6px;
+    font-weight: bold;
+}
+.group-container{
+    border: 1px solid black;
+    padding:20px;
+    margin-bottom: 8px;
+    margin-top: 20px;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-radius: 8px;
+}
+.group-name
+{
+    border: none;
+    background-color: royalblue;
+    border-radius: 6px;
+    padding: 12px;
+    color: white;
+    font-weight: bold;
+}
+#g-chat
+{
+   border: none;
+   float: right;
+   background-color: black;
+   border-radius: 6px;
+   padding: 6px;
+   color: white;
+   font-weight: bold;
+}

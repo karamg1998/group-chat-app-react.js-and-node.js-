@@ -22,14 +22,6 @@ const User=sequelize.define('user',{
     password:{
         type:Sequelize.STRING,
         allowNull:false,
-    },
-    premiumUser:{
-        type:Sequelize.STRING,
-        allowNull:false,
-    },
-    recruiter:{
-        type:Sequelize.STRING,
-        allowNull:false,
     }
 });
 

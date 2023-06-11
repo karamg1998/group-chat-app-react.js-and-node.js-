@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+const forgot=require('../models/forgotPass');
 const jwt = require('jsonwebtoken');
 
 function generateToken(id)
@@ -139,4 +140,66 @@ exports.profile=async (req,res,next)=>{
     {
         res.json(err);
     }
+}
+
+exports.forgot=async (req,res,next)=>{
+    let phone=req.header('phone');
+    let email=req.header('email');
+    try{
+        let u=await User.findOne({where:{phone:phone,email:email}});
+        if(!u)
+        {
+            res.json({success:false,m:'no user found'});
+        }
+        else{
+            let f=await forgot.create({
+                active:'true',
+                userId:u.id
+            });
+            res.json({success:true,forgot:generateToken(f.id)});
+        }
+    }
+    catch(err)
+    {
+        res.json(err);
+    }
+};
+
+exports.success=async (req,res,next)=>{
+    let pass=req.header('pass');
+    let id=parseToken(req.header('forgot'));
+    try{
+        let f=await forgot.findOne({where:{id:id}});
+        if(!f || f.active==='false')
+        {
+            res.json({success:false,m:'unauthorized request'});
+        }
+        else
+        {
+            let user= await User.findOne({where:{id:f.userId}});
+             if(user)
+             {
+                bcrypt.hash(pass,10,async(err,hash)=>{
+                    try{
+                        user.update({
+                            password:hash
+                        })
+                        .then(u=>{
+                            f.update({active:'false'});
+                            res.json({success:true,m:'password updated successfully'});
+                        })
+                    }
+                    catch(err)
+                    {
+                        res.json(err);
+                    }
+                })
+             }
+        }
+    }
+    catch(err)
+    {
+        res.json(err);
+    }
+
 }

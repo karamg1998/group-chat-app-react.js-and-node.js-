@@ -1,0 +1,93 @@
+.members
+{
+    border: 1px solid black;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 2px;
+    border-radius: 4px;
+}
+.mem{
+    border: none;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 2px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+.adm
+{
+    float: right;
+}
+
+.add-me
+{
+    margin-left: 40%;
+    margin-bottom: 10px;
+}
+#false
+{
+    display: none;
+}
+#true
+{
+    display: initial;
+}
+#ma
+{
+    background-color: royalblue;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 2px;
+    border-radius: 3px;
+    border: none;
+    float: right;
+}
+#r
+{
+    background-color: rgb(226, 12, 12);
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 2px;
+    border-radius: 3px;
+    margin-right: 10px;
+    border: none;
+    float: right;
+    
+}
+#lg
+{
+    background-color: rgb(104, 14, 14);
+    color: white;
+    border: none;
+    padding: 4px;
+    border-radius: 3px;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 15px;
+}
+#dg
+{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 4px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 15px;
+}
+#lgn
+{
+    background-color: rgb(104, 14, 14);
+    color: white;
+    border: none;
+    padding: 4px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 45%;
+    margin-bottom: 10px;
+}

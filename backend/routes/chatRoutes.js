@@ -3,6 +3,8 @@ let express=require('express');
 let Router=express.Router();
 
 Router.get('/getmessages',chatController.returnChats);
-Router.post('/addchat',chatController.addChat);
+Router.get('/group/getm',chatController.getM);
+Router.post('/group/addm',chatController.addM);
+Router.get('/room',chatController.getRoom);
 
 module.exports=Router;

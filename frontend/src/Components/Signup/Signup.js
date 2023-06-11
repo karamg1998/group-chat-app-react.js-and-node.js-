@@ -91,7 +91,7 @@ function Signup() {
                 <label className="phone">Phone:</label>
                 <input
                     value={phone}
-                    type="number"
+                    type="phone"
                     id="phone"
                     name="phone"
                     onChange={(e) => { setPhone(e.target.value) }}

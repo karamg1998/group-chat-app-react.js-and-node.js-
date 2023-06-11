@@ -1,47 +1,34 @@
-import { BrowserRouter, Form, Route, Routes } from "react-router-dom";
-import Login from "./components/login/Login";
-import Signup from "./components/signup/Signup";
-import AllJobs from "./components/All-jobs/Alljobs";
-import AppliedJobs from "./components/applied-jobs/Applied";
-import Profile from "./components/profile/Profile";
-import Editprofile from "./components/edit-profile/Editprofile";
-import Forgot from "./components/forgot/Forgot";
-import Pass from "./components/set-password/Pass";
-import PostJobs from "./recruiter/postjob/Postjobs";
-import YourJobs from "./recruiter/your-job/Yourjob";
-import Interested from "./recruiter/interested/Interested";
-import Recprofile from "./recruiter/profile/Profile";
-import Editrecprofile from "./recruiter/edit-profile/Editprofile";
-import Details from "./recruiter/job-details/Jobdetails";
-import EditJob from "./recruiter/edit-job/Editjob";
-import JobDetails from "./components/job-details/Jobdetails";
-import AppliedDetails from "./components/applied-details/Applieddetails";
-import Pnf from "./components/pagenotfound/Pnf";
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./Components/Login/Login";
+import Signup from "./Components/Signup/Signup";
+import Pnf from "./Components/pnf/PNF";
+import Allchats from "./Components/All-chats/Allchats";
+import Allgroups from "./Components/All-groups/Allgropus";
+import Profile from "./Components/Profile/Profile";
+import Chat from "./Components/Chat/Chat";
+import CreateGroup from "./Components/Create-group/Create";
+import Gchat from "./Components/G-chat/Gchat";
+import Allmembers from "./Components/all-members/Allmembers";
+import Forgot from "./forgotpass/Forgot";
+import Success from "./success-forgot/Success";
 
 function App() {
  
   return (
   <BrowserRouter>
    <Routes>
-    <Route path="/signup" element={<Signup></Signup>}/>
-    <Route path="/" element={<Login></Login>}/>
-    <Route path="/home/alljobs" element={<AllJobs></AllJobs>}/>
-    <Route path="/home/alljobs/details/:id" element={<JobDetails></JobDetails>}/>
-    <Route path="/home/appliedjobs" element={<AppliedJobs></AppliedJobs>}/>
-    <Route path="/home/profile" element={<Profile></Profile>}/>
-    <Route path="/home/profile/edit" element={<Editprofile></Editprofile>}/>
-    <Route path="/forgot" element={<Forgot></Forgot>}/>
-    <Route path="/forgot/:id" element={<Pass></Pass>}/>
-    <Route path="/rec/postjob" element={<PostJobs></PostJobs>}/>
-    <Route path="/rec/yourjobs" element={<YourJobs></YourJobs>}/>
-    <Route path="/rec/interested" element={<Interested></Interested>}/>
-    <Route path="/rec/profile" element={<Recprofile></Recprofile>}/>
-    <Route path="/rec/profile/edit" element={<Editrecprofile></Editrecprofile>}/>
-    <Route path="/rec/yourjobs/details/:id" element={<Details></Details>}/>
-    <Route path="/rec/yourjobs/details/edit/:id" element={<EditJob></EditJob>}/>
-    <Route path="/home/appliedjobs/details/:id" element={<AppliedDetails></AppliedDetails>}/>
-    <Route path="*" element={<Pnf></Pnf>}/>
+     <Route path="/" element={<Login></Login>}></Route>
+     <Route path="/signup" element={<Signup></Signup>}></Route>
+     <Route path="/home/chats" element={<Allchats></Allchats>}></Route>
+     <Route path="/home/groups" element={<Allgroups></Allgroups>}></Route>
+     <Route path="/home/profile" element={<Profile></Profile>}></Route>
+     <Route path="/home/chats/:id" element={<Chat></Chat>}></Route>
+     <Route path="*" element={<Pnf></Pnf>}></Route>
+     <Route path="/home/groups/create" element={<CreateGroup></CreateGroup>}></Route>
+     <Route path="/home/groups/:id" element={<Gchat></Gchat>}></Route>
+     <Route path="/home/groups/members/:id" element={<Allmembers></Allmembers>}></Route>
+     <Route path="/forgot" element={<Forgot></Forgot>}></Route>
+     <Route path="/forgot/:id" element={<Success></Success>}></Route>
    </Routes>
    </BrowserRouter>
   );
