@@ -1,5 +1,6 @@
 let Group=require('../models/group');
 let groupMember=require('../models/group-member');
+let room=require('../models/groupRoom');
 let User=require('../models/user');
 let jwt=require('jsonwebtoken');
 
@@ -33,6 +34,12 @@ exports.CreateGroup=async (req,res,next)=>{
             groupId:gid
         });
     }).then(re=>{
+        return room.create({
+            id:Math.random(),
+            groupId:gid,
+            groupName:gName
+        });
+    }).then(g=>{
         res.json({success:true,message:'group created'});
     })
  }   
@@ -64,7 +71,7 @@ exports.getGroup=async (req,res,next)=>{
 exports.getM=async (req,res,next)=>{
     let id=parseToken(req.header('group'));
     try{
-        groupMember.findAll({where:{groupId:id}})
+        await groupMember.findAll({where:{groupId:id}})
         .then(group=>{
            let obj=[];
            for(var i=0;i<group.length;i++)

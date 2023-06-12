@@ -47,7 +47,7 @@ function Allchats()
                 <span className='user-name'><i class="fa fa-user" id="fa"></i> {d.name}</span>
                 <button id="chat" onClick={chat}>Chat</button>
             </div>)
-           })};
+           })}
             </section>
         </div>
     );

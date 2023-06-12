@@ -1,5 +1,6 @@
 let message=require('../models/messages');
 let room=require('../models/room');
+let groupRoom=require('../models/groupRoom');
 let groupMessages=require('../models/group-messages');
 let user=require('../models/user');
 let jwt=require('jsonwebtoken');
@@ -35,34 +36,17 @@ exports.returnChats = async (req, res, next) => {
     }
  };
 
- exports.addM=async (req,res,next)=>{
-  let id=parseToken(req.body.pId);
-  let group=parseToken(req.body.id);
-  try{
-   await user.findOne({where:{id:id}}).then(user=>{
-       return groupMessages.create({
-           message:req.body.msg,
-           userId:id,
-           groupId:group,
-           userName:user.name
-       });
-   })
-   .then(m=>{
-       res.json({m:'message sent'});
-   })
-  }
-  catch(err)
-  {
-   res.json(err);
-  }
-};
 
 exports.getM=async (req,res,next)=>{
    let id=parseToken(req.header('token'));
    let group=parseToken(req.header('group'));
+   let roomId;
    try{
-       await groupMessages.findAll({where:{groupId:[group,['id','ASC']]}})
-       .then(m=>{
+       await groupRoom.findOne({where:{groupId:group}})
+       .then(g=>{
+         roomId=g.id;
+         return groupMessages.findAll({where:{groupId:[group,['id','ASC']]}});
+       }).then(m=>{
            let obj=[];
            for(var i=0;i<m.length;i++)
            {
@@ -74,7 +58,7 @@ exports.getM=async (req,res,next)=>{
                obj.push({message:m[i].message,sender:'secondary',name:m[i].userName});
              }
            }
-           res.json(obj);
+           res.json({obj:obj,room:roomId});
        })
    }
    catch(err)

@@ -1,17 +1,21 @@
 const Sequelize=require('sequelize');
 const sequelize=require('../database/db');
 
-const Room=sequelize.define('room',{
-    id:{type:Sequelize.INTEGER,
-        autoIncrement:true,
+const groupRoom=sequelize.define('groupRoom',{
+    id:{type:Sequelize.STRING,
         primaryKey:true,
         allowNull:false,
         unique:true
     },
-    userId1:{
+    groupId:{
         type:Sequelize.INTEGER,
+        allowNull:false,
+        unique:true
+    },
+    groupName:{
+        type:Sequelize.STRING,
         allowNull:false,
     }
 });
 
-module.exports=Room;
+module.exports=groupRoom;

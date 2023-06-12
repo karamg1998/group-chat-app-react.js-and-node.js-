@@ -17,6 +17,16 @@ function Chat() {
   let room=localStorage.getItem('room');
   let n=document.querySelector('.chat-sec');
 
+  useEffect(()=>{
+    u();
+    interval();
+  },[]);
+
+
+  useEffect(() => {
+    socket.emit("join_room", room);
+   s();
+  }, [socket]);
 
   async function u() {
     try {
@@ -35,29 +45,6 @@ function Chat() {
     }
   }
 
-  useEffect(()=>{
-    u();
-    interval();
-    socket.emit("join_room", room);
-  },[]);
-
-
-  useEffect(() => {
-   s();
-  }, [socket]);
-
-  function s()
-  {
-    let n1=document.querySelector('.chat-sec');
-    socket.on("receive_message", (data) => {
-      n1.innerHTML+=` <div class="secondary">
-      <ul class="sec">${data}</ul>
-      <br>
-      <br>
-      </div>`
-    });
-  }
-
   let interval = async () => {
       try {
         await axios.get('http://localhost:4000/getmessages', { headers: { 'logger': pId, 'secondary': id } })
@@ -70,6 +57,18 @@ function Chat() {
         console.log(err)
       }
     }
+
+  function s()
+  {
+    let n1=document.querySelector('.chat-sec');
+    socket.on("receive_message", (data) => {
+      n1.innerHTML+=` <div class="secondary">
+      <ul class="sec">${data}</ul>
+      <br>
+      <br>
+      </div>`
+    });
+  }
 
   function back(e) {
     e.preventDefault();

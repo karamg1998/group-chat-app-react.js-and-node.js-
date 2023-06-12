@@ -3,6 +3,8 @@ import "./gchat.css"
 import { useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
+import io from "socket.io-client"
+const socket=io.connect("http://localhost:4000");
 
 function Gchat() {
   let navigate = useNavigate();
@@ -12,33 +14,41 @@ function Gchat() {
   let id = useParams().id;
   let user = JSON.parse(localStorage.getItem('token'));
   let pId = user.token;
+  let  Name=user.name;
+  const [room,setRoom]=useState('');
+  let chatSec=document.querySelector('.chat-sec');
 
-  React.useEffect(() => {
-    fetch();
+  useEffect(() => {
+    interval();
   }, []);
 
   useEffect(() => {
+    let c=document.querySelector('.chat-sec');
+     socket.on("receive_groupMessage",(data)=>{
+      c.innerHTML+=`<div>
+      <ul class="sec">${data.msg}</ul><br>
+      <ul class="other">${data.Name}</ul>
+      <br>
+      <br>
+    </div>`;
+     });
+  },[socket])
 
-    let interval = setInterval(async () => {
-      try {
-        await axios.get('http://localhost:4000/group/getm', { headers: { 'token': pId, 'group': id } })
-          .then(user => {
-            console.log(user.data);
-            setData(user.data);
-          })
-      }
-      catch (err) {
-        console.log(err)
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  })
-
-  function fetch() {
-    let group = localStorage.getItem('group');
-    setName(group);
-  }
+  let interval = async () => {
+    try {
+      await axios.get('http://localhost:4000/group/getm', { headers: { 'token': pId, 'group': id } })
+        .then(user => {
+          let group = localStorage.getItem('group');
+          setName(group);
+          setRoom(user.data.room);
+          socket.emit("join_room",user.data.room);
+          setData(user.data.obj);
+        })
+    }
+    catch (err) {
+      console.log(err)
+    }
+  };
 
 
   function back(e) {
@@ -53,22 +63,19 @@ function Gchat() {
 
   async function snd(e) {
     e.preventDefault();
-    let obj = { id, pId, msg }
+    let obj = { id, pId, msg ,room,Name}
     if (msg === '') {
       alert('enter message');
       return;
     }
     else {
-      try {
-        await axios.post('http://localhost:4000/group/addm', obj)
-          .then(res => {
-            console.log(res);
-            setMsg('');
-          })
-      }
-      catch (err) {
-        console.log(err);
-      }
+      socket.emit("send_groupMessage",obj);
+      chatSec.innerHTML+=`<div>
+      <ul class="log">${msg}</ul><br>
+      <ul class="you">you</ul>
+      <br>
+      <br>
+    </div>`
     }
   }
 

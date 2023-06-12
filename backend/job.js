@@ -31,6 +31,8 @@ const messages=require('./models/messages');
 const group=require('./models/group');
 const groupMessages=require('./models/group-messages');
 const groupMembers=require('./models/group-member');
+const groupRoom=require('./models/groupRoom');
+const room=require('./models/room');
 
 app.use(userRoutes);
 app.use(chatRoutes);
@@ -41,16 +43,40 @@ User.hasMany(messages);
 User.hasMany(group);
 User.hasMany(groupMessages);
 User.hasMany(groupMembers);
+User.hasOne(room);
 group.hasMany(groupMembers);
 group.hasMany(groupMessages);
+group.hasOne(groupRoom);
 
 
   io.on("connection", (socket) => {
-    console.log(`User Connected: ${socket.id}`);
   
     socket.on("join_room", (data) => {
       socket.join(data);
     });
+
+    socket.on("send_groupMessage",async(data)=>{
+      let {Name,msg}=data;
+        let id=parseToken(data.pId);
+        let group=parseToken(data.id);
+        try{
+         await User.findOne({where:{id:id}}).then(user=>{
+             return groupMessages.create({
+                 message:data.msg,
+                 userId:id,
+                 groupId:group,
+                 userName:user.name
+             });
+         })
+         .then(m=>{
+          socket.to(data.room).emit("receive_groupMessage",{Name,msg});
+         })
+        }
+        catch(err)
+        {
+          socket.to(data.room).emit("receive_groupMessage",err)
+        }
+    })
   
     socket.on("send_message",async (data) => {
         let logger = parseToken(data.pId);
@@ -66,7 +92,7 @@ group.hasMany(groupMessages);
           }
            catch(err)
            {
-            console.log(err);
+            socket.to(data.room).emit("receive_message", err);
            }
     });
   });
