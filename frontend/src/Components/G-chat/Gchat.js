@@ -11,16 +11,32 @@ function Gchat() {
   const [data, setData] = useState([]);
   const [name, setName] = useState('');
   const [msg, setMsg] = useState('');
+  const [group,setGroup]=useState('');
   let id = useParams().id;
   let user = JSON.parse(localStorage.getItem('token'));
   let pId = user.token;
   let  Name=user.name;
-  const [room,setRoom]=useState('');
   let chatSec=document.querySelector('.chat-sec');
 
   useEffect(() => {
-    interval();
+    Interval();
   }, []);
+
+  let Interval = async () => {
+    try {
+      await axios.get('http://localhost:4000/group/getm', { headers: { 'token': pId, 'group': id } })
+        .then(user => {
+          let group = localStorage.getItem('group');
+          setName(group);
+          setGroup(user.data.room);
+          socket.emit("join_room",user.data.room);
+          setData(user.data.obj);
+        })
+    }
+    catch (err) {
+      console.log(err)
+    }
+  };
 
   useEffect(() => {
     let c=document.querySelector('.chat-sec');
@@ -34,23 +50,6 @@ function Gchat() {
      });
   },[socket])
 
-  let interval = async () => {
-    try {
-      await axios.get('http://localhost:4000/group/getm', { headers: { 'token': pId, 'group': id } })
-        .then(user => {
-          let group = localStorage.getItem('group');
-          setName(group);
-          setRoom(user.data.room);
-          socket.emit("join_room",user.data.room);
-          setData(user.data.obj);
-        })
-    }
-    catch (err) {
-      console.log(err)
-    }
-  };
-
-
   function back(e) {
     e.preventDefault();
     navigate('/home/groups')
@@ -63,7 +62,7 @@ function Gchat() {
 
   async function snd(e) {
     e.preventDefault();
-    let obj = { id, pId, msg ,room,Name}
+    let obj = { id, pId, msg ,group,Name}
     if (msg === '') {
       alert('enter message');
       return;

@@ -11,10 +11,10 @@ function Chat() {
   const [data, setData] = useState([]);
   const [name, setName] = useState('');
   const [msg, setMsg] = useState('');
+  const [room,setRoom]=useState('');
   let id = useParams().id;
   let user = JSON.parse(localStorage.getItem('token'));
   let pId = user.token;
-  let room=localStorage.getItem('room');
   let n=document.querySelector('.chat-sec');
 
   useEffect(()=>{
@@ -22,13 +22,7 @@ function Chat() {
     interval();
   },[]);
 
-
-  useEffect(() => {
-    socket.emit("join_room", room);
-   s();
-  }, [socket]);
-
-  async function u() {
+ async function u() {
     try {
       await axios.get('http://localhost:4000/user', { headers: { 'Token': id } })
         .then(user => {
@@ -37,7 +31,8 @@ function Chat() {
 
       await axios.get('http://localhost:4000/room',{headers:{'token':pId,'id':id}})
       .then(room=>{
-        localStorage.setItem('room',room.data.room);
+        setRoom(room.data.room);
+        socket.emit("join_room", room.data.room);
       })
     }
     catch (err) {
@@ -58,8 +53,7 @@ function Chat() {
       }
     }
 
-  function s()
-  {
+  useEffect(() => {
     let n1=document.querySelector('.chat-sec');
     socket.on("receive_message", (data) => {
       n1.innerHTML+=` <div class="secondary">
@@ -68,7 +62,8 @@ function Chat() {
       <br>
       </div>`
     });
-  }
+  }, [socket]);
+
 
   function back(e) {
     e.preventDefault();
