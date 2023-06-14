@@ -3,7 +3,7 @@ import "./chat.css"
 import { useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
-import io, { Socket }  from "socket.io-client";
+import io, { Socket } from "socket.io-client";
 const socket = io.connect("http://localhost:4000");
 
 function Chat() {
@@ -11,53 +11,38 @@ function Chat() {
   const [data, setData] = useState([]);
   const [name, setName] = useState('');
   const [msg, setMsg] = useState('');
-  const [room,setRoom]=useState('');
+  const [room, setRoom] = useState('');
   let id = useParams().id;
   let user = JSON.parse(localStorage.getItem('token'));
   let pId = user.token;
-  let n=document.querySelector('.chat-sec');
+  let n = document.querySelector('.chat-sec');
 
-  useEffect(()=>{
-    u();
+  useEffect(() => {
     interval();
-  },[]);
+  }, []);
 
- async function u() {
+  let interval = async () => {
     try {
-      await axios.get('http://localhost:4000/user', { headers: { 'Token': id } })
+      await axios.get('http://localhost:4000/getmessages', { headers: { 'logger': pId, 'secondary': id } })
         .then(user => {
-          setName(user.data.name);
-        });
-
-      await axios.get('http://localhost:4000/room',{headers:{'token':pId,'id':id}})
-      .then(room=>{
-        setRoom(room.data.room);
-        socket.emit("join_room", room.data.room);
-      })
+          console.log(user.data);
+          setData(user.data.obj);
+          let chat = localStorage.getItem('chat');
+          setName(chat);
+          setRoom(user.data.room);
+          socket.emit("join_room", user.data.room);
+        })
     }
     catch (err) {
       console.log(err)
     }
   }
 
-  let interval = async () => {
-      try {
-        await axios.get('http://localhost:4000/getmessages', { headers: { 'logger': pId, 'secondary': id } })
-          .then(user => {
-            console.log(user.data);
-            setData(user.data);
-          })
-      }
-      catch (err) {
-        console.log(err)
-      }
-    }
-
   useEffect(() => {
-    let n1=document.querySelector('.chat-sec');
+    let n1 = document.querySelector('.chat-sec');
     socket.on("receive_message", (data) => {
-      n1.innerHTML+=` <div class="secondary">
-      <ul class="sec">${data}</ul>
+      n1.innerHTML += ` <div class="secondary">
+      <ul class="sec">${data.msg}</ul>
       <br>
       <br>
       </div>`
@@ -72,13 +57,13 @@ function Chat() {
 
   async function snd(e) {
     e.preventDefault();
-    let obj = { id, pId, msg ,room}
+    let obj = { id, pId, msg, room }
     if (msg === '') {
       alert('enter message');
       return;
     }
     else {
-        n.innerHTML+=` <div class="logger">
+      n.innerHTML += ` <div class="logger">
         <ul class="log">${msg}</ul>
         <br>
         <br>

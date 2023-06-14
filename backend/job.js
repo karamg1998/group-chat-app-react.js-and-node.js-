@@ -79,6 +79,7 @@ group.hasOne(groupRoom);
     })
   
     socket.on("send_message",async (data) => {
+      let {msg}=data;
         let logger = parseToken(data.pId);
         let sUser = parseToken(data.id);
        try{
@@ -87,7 +88,7 @@ group.hasOne(groupRoom);
               to: sUser,
               userId: logger
            }).then(message => {
-            socket.to(data.room).emit("receive_message", data.msg);
+            socket.to(data.room).emit("receive_message", {msg});
            })
           }
            catch(err)

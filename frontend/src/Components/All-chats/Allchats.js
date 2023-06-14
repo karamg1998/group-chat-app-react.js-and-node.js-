@@ -34,6 +34,8 @@ function Allchats()
     function chat(e)
     {
       let id=e.target.parentElement.id;
+      let name=e.target.previousElementSibling.innerText;
+      localStorage.setItem('chat',name);
       navigate(`/home/chats/${id}`)
     }
 

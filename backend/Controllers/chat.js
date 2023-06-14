@@ -13,27 +13,42 @@ function parseToken(id) {
 exports.returnChats = async (req, res, next) => {
     let logger = parseToken(req.header('logger'));
     let secondaryUser = parseToken(req.header('secondary'));
+    let roomId;
    
     try {
-       await message.findAll({ where: {userId:[secondaryUser,logger,['id','ASC']],to:[secondaryUser,logger]}})
-          .then(response => {
-            let obj=[];
-            for(var i=0;i<response.length;i++)
+      let private=await room.findOne({where:{userId1:[logger,secondaryUser],userId:[logger,secondaryUser]}});
+      if(!private)
+      {
+         room.create({
+            userId1:secondaryUser,
+            userId:logger
+         }).then(room=>{
+             roomId=room.id;
+         })
+      }
+      else{
+         roomId=private.id;
+         await message.findAll({ where: {userId:[secondaryUser,logger,['id','ASC']],to:[secondaryUser,logger]}})
+         .then(response => {
+           let obj=[];
+           for(var i=0;i<response.length;i++)
+           {
+            if(response[i].userId===logger)
             {
-             if(response[i].userId===logger)
-             {
-                obj.push({message:response[i].message,sender:'logger'});
-             }
-             else{
-                obj.push({message:response[i].message,sender:'secondary'});
-             }
+               obj.push({message:response[i].message,sender:'logger'});
             }
-            res.json(obj);
-          })
-    }
-    catch (err) {
-       res.json(err);
-    }
+            else{
+               obj.push({message:response[i].message,sender:'secondary'});
+            }
+           }
+           res.json({obj:obj,room:roomId});
+         })
+      }
+  }
+  catch(err)
+  {
+   res.status(500).json({err:err});
+  }
  };
 
 
@@ -67,26 +82,3 @@ exports.getM=async (req,res,next)=>{
    }
 };
 
-exports.getRoom=async (req,res,next)=>{
-   let token=parseToken(req.header('token'));
-   let id=parseToken(req.header('id'));
-  try{
-   let private=await room.findOne({where:{userId1:[token,id],userId:[token,id]}});
-      if(!private)
-      {
-         room.create({
-            userId1:id,
-            userId:token
-         }).then(room=>{
-            res.json({room:room.id});
-         })
-      }
-      else{
-         res.json({room:private.id});
-      }
-  }
-  catch(err)
-  {
-   res.status(500).json({err:err});
-  }
-};

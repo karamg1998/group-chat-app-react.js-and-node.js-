@@ -113,20 +113,6 @@ exports.getUsers=async (req,res,next)=>{
     }
 };
 
-exports.user=async (req,res,next)=>{
-    let id=parseToken(req.header('token'));
-    try{
-        await User.findOne({where:{id:id}})
-        .then(user=>{
-            res.json({name:user.name})
-        })
-    }
-    catch(err)
-    {
-        res.json(err);
-    }
-};
-
 exports.profile=async (req,res,next)=>{
     let id=parseToken(req.header('token'));
     try{
